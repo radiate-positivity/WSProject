@@ -1,0 +1,9 @@
+{% extends "login.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block err%}
+
+<div class="alert alert-dark" role="alert">
+    <div>Данное имя занято. Возьмите другое.</div>
+</div>
+
+{% endblock %}

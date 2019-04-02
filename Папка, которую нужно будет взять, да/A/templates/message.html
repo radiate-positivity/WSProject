@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-auto offset-md-1">
+        <a role="button" class="btn btn-dark" href='/dialog'>&#129152</a>
+    </div>
+</div>
+<div aria-atomic="true" style="position: relative; min-height: 10px;"></div>
+<div class="row">
+    <div class="col-md-auto offset-md-1">
+        <a role="button" class="btn btn-dark" href='#end'>▼</a>
+    </div>
+</div>
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-md-9">
+            {% for item in letters %}
+            {% if item[2] == user %}
+            <div class="row justify-content-md-end">
+                <div class="col-md-auto">
+                    <div class="alert alert-primary" role="alert">
+                        {% if 'https://' in item[1] or 'http://' in item[1]%}
+                        <a href="{{item[1]}}">{{item[1]|wordwrap(50)}}</a>
+                        {% else %}
+                        <div>{{item[1]|wordwrap()}}</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="row justify-content-md-start">
+                <div class="col-md-auto">
+                    <div class="alert alert-success" role="alert">
+                        {% if 'https://' in item[1] or 'http://' in item[1]%}
+                        <a href="{{item[1]}}">{{item[1]|wordwrap(50)}}</a>
+                        {% else %}
+                        <div>{{item[1]|wordwrap()}}</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endif %} {% endfor %}
+            <div class="row justify-content-md-center">
+                <div class="col-md-12" id="end">
+                    {{ wtf.quick_form(form, action="") }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-auto offset-md-1">
+        <a role="button" class="btn btn-dark" href='#'>▲</a>
+    </div>
+</div>
+{% endblock %}
